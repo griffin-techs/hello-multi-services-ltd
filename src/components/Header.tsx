@@ -30,6 +30,7 @@ export function Header() {
     { href: '/services', label: t('nav.services') },
     { href: '/pricing', label: t('nav.pricing') },
     { href: '/gallery', label: t('nav.gallery') },
+    { href: '/blog', label: t('nav.blog') },
     { href: '/faq', label: t('nav.faq') },
     { href: '/contact', label: t('nav.contact') },
   ];
