@@ -24,6 +24,16 @@ import { Button } from '@/components/ui/button';
 import { ServiceCard } from '@/components/ServiceCard';
 import heroImage from '@/assets/hero-image.jpg';
 
+// Partner logos
+import mtnLogo from '@/assets/partners/mtn-momo.png';
+import iremboLogo from '@/assets/partners/irembo.png';
+import rraLogo from '@/assets/partners/rra.png';
+import ruraLogo from '@/assets/partners/rura.png';
+import mobicashLogo from '@/assets/partners/mobicash.png';
+import spennLogo from '@/assets/partners/spenn.png';
+import bkLogo from '@/assets/partners/bk.png';
+import rwfaLogo from '@/assets/partners/rwfa.png';
+
 const Index = () => {
   const { t, language } = useTranslation();
 
@@ -45,7 +55,16 @@ const Index = () => {
     { icon: Sparkles, title: t('why.affordable'), description: t('why.affordable_desc') },
   ];
 
-  const partners = ['MTN Mobile Money', 'Mobicash', 'Spenn', 'Irembo', 'RRA', 'RURA', 'BK Yacu', 'RWFA'];
+  const partners = [
+    { name: 'MTN Mobile Money', logo: mtnLogo },
+    { name: 'Irembo', logo: iremboLogo },
+    { name: 'RRA', logo: rraLogo },
+    { name: 'RURA', logo: ruraLogo },
+    { name: 'Mobicash', logo: mobicashLogo },
+    { name: 'Spenn', logo: spennLogo },
+    { name: 'BK Yacu', logo: bkLogo },
+    { name: 'RWFA', logo: rwfaLogo },
+  ];
 
   const testimonials = [
     {
@@ -303,13 +322,17 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-6">
             {partners.map((partner) => (
               <div
-                key={partner}
-                className="px-6 py-4 bg-secondary-foreground/10 backdrop-blur-sm rounded-xl text-secondary-foreground font-medium hover:bg-secondary-foreground/20 transition-colors"
+                key={partner.name}
+                className="px-6 py-4 bg-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center"
               >
-                {partner}
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name}
+                  className="h-12 w-auto object-contain"
+                />
               </div>
             ))}
           </div>
