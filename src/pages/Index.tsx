@@ -14,7 +14,9 @@ import {
   Clock,
   Shield,
   Users,
-  Sparkles
+  Sparkles,
+  Quote,
+  Star
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '@/lib/i18n';
@@ -23,7 +25,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import heroImage from '@/assets/hero-image.jpg';
 
 const Index = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const services = [
     { icon: FileText, title: t('services.irembo'), description: t('services.irembo_desc'), href: '/services/irembo', iconColor: 'text-primary' },
@@ -44,6 +46,45 @@ const Index = () => {
   ];
 
   const partners = ['MTN Mobile Money', 'Mobicash', 'Spenn', 'Irembo', 'RRA', 'RURA', 'BK Yacu', 'RWFA'];
+
+  const testimonials = [
+    {
+      name: 'Jean Pierre Habimana',
+      role: language === 'kin' ? 'Nyir\'ubucuruzi' : 'Business Owner',
+      service: 'Irembo',
+      quote: language === 'kin'
+        ? 'Nabonye icyangombwa cyanjye cy\'ubucuruzi mu minsi 2 gusa. Abakozi babo bazi neza serivisi za Irembo. Ndabashimira cyane!'
+        : 'I got my business permit in just 2 days. Their staff really knows Irembo services well. Thank you so much!',
+      rating: 5,
+    },
+    {
+      name: 'Marie Claire Uwimana',
+      role: language === 'kin' ? 'Umubyeyi w\'umukwe' : 'Wedding Planner',
+      service: language === 'kin' ? 'Gucapa' : 'Printing',
+      quote: language === 'kin'
+        ? 'Ibirango by\'ubukwe bw\'umwana wanjye byari byiza cyane! Design yari nziza kandi ibiciro byari bihendutse. Ndabashimiye.'
+        : 'The wedding invitations for my child were beautiful! The design was elegant and prices were affordable. Highly recommend.',
+      rating: 5,
+    },
+    {
+      name: 'Emmanuel Ndayisaba',
+      role: language === 'kin' ? 'Umucuruzi' : 'Trader',
+      service: 'Mobile Money',
+      quote: language === 'kin'
+        ? 'Nkohereza amafaranga buri munsi kuri HELLO. Bihuse, birinzwe, kandi ntibibaho ikibazo. Ni agent mwiza cyane.'
+        : 'I send money through HELLO every day. Fast, secure, and never had any issues. They are the best agent around.',
+      rating: 5,
+    },
+    {
+      name: 'Vestine Mukamana',
+      role: language === 'kin' ? 'Umuhinzi' : 'Farmer',
+      service: 'Irembo & TIN',
+      quote: language === 'kin'
+        ? 'Bamfashije kubona TIN n\'uruhushya rwo gucuruza. Basobanura neza kandi bafasha abantu badashobora gukoresha murandasi.'
+        : 'They helped me get my TIN and trading permit. They explain everything clearly and help those who can\'t use online systems.',
+      rating: 5,
+    },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -189,6 +230,61 @@ const Index = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {item.description}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="section-padding bg-muted/50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              {language === 'kin' ? 'Ibyo Abakiriya Bacu Bavuga' : 'What Our Clients Say'}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              {language === 'kin'
+                ? 'Twishimiye gukorera abakiriya benshi bashimishijwe'
+                : 'We\'re proud to serve many satisfied customers'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 relative"
+              >
+                {/* Quote Icon */}
+                <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
+                
+                {/* Service Badge */}
+                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-4">
+                  {testimonial.service}
+                </span>
+                
+                {/* Quote */}
+                <p className="text-foreground/80 text-sm leading-relaxed mb-4 italic">
+                  "{testimonial.quote}"
+                </p>
+                
+                {/* Rating */}
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-warm fill-warm" />
+                  ))}
+                </div>
+                
+                {/* Author */}
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold text-foreground text-sm">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-muted-foreground text-xs">
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
