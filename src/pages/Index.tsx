@@ -340,7 +340,7 @@ const Index = () => {
                 stopOnMouseEnter: true,
               }),
             ]}
-            className="w-full"
+            className="w-full max-w-5xl mx-auto"
           >
             <CarouselContent className="-ml-4">
               {partners.map((partner) => (
@@ -356,22 +356,6 @@ const Index = () => {
               ))}
             </CarouselContent>
           </Carousel>
-
-          {/* Static display for larger screens */}
-          <div className="hidden xl:flex flex-wrap justify-center gap-6 mt-8">
-            {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="px-6 py-4 bg-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center"
-              >
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name}
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
