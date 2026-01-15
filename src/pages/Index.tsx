@@ -22,6 +22,12 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { ServiceCard } from '@/components/ServiceCard';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import heroImage from '@/assets/hero-image.jpg';
 
 // Partner logos
@@ -311,7 +317,7 @@ const Index = () => {
       </section>
 
       {/* Partners Section */}
-      <section className="section-padding bg-secondary text-secondary-foreground">
+      <section className="section-padding bg-secondary text-secondary-foreground overflow-hidden">
         <div className="container-custom">
           <div className="text-center mb-10">
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
@@ -322,7 +328,37 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6">
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 2000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {partners.map((partner) => (
+                <CarouselItem key={partner.name} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                  <div className="px-4 py-6 bg-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center h-24">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="h-14 w-auto object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* Static display for larger screens */}
+          <div className="hidden xl:flex flex-wrap justify-center gap-6 mt-8">
             {partners.map((partner) => (
               <div
                 key={partner.name}
