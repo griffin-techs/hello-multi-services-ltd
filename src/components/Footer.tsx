@@ -22,7 +22,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-card border-t border-border dark:bg-muted">
       {/* Main Footer */}
       <div className="container-custom py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -33,15 +33,15 @@ export function Footer() {
                 <span className="text-primary-foreground font-bold text-lg">H</span>
               </div>
               <div>
-                <span className="font-display font-bold text-lg text-background">
+                <span className="font-display font-bold text-lg text-foreground">
                   HELLO
                 </span>
-                <span className="font-display text-sm text-background/60 block -mt-1">
+                <span className="font-display text-sm text-muted-foreground block -mt-1">
                   Multi-Services
                 </span>
               </div>
             </div>
-            <p className="text-background/70 text-sm leading-relaxed mb-4">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               {t('footer.tagline')}
             </p>
             {/* Partner Badges */}
@@ -49,7 +49,7 @@ export function Footer() {
               {['MTN', 'Irembo', 'RRA', 'BK'].map((partner) => (
                 <span
                   key={partner}
-                  className="px-2 py-1 text-xs bg-background/10 rounded text-background/80"
+                  className="px-2 py-1 text-xs bg-muted rounded text-muted-foreground"
                 >
                   {partner}
                 </span>
@@ -59,7 +59,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-semibold text-background mb-4">
+            <h4 className="font-display font-semibold text-foreground mb-4">
               {t('footer.quick_links')}
             </h4>
             <ul className="space-y-2">
@@ -67,7 +67,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -78,7 +78,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-semibold text-background mb-4">
+            <h4 className="font-display font-semibold text-foreground mb-4">
               {t('footer.services')}
             </h4>
             <ul className="space-y-2">
@@ -86,7 +86,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -97,14 +97,14 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display font-semibold text-background mb-4">
+            <h4 className="font-display font-semibold text-foreground mb-4">
               {t('footer.contact')}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="tel:+250788664840"
-                  className="flex items-start gap-2 text-background/70 hover:text-primary transition-colors text-sm"
+                  className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>+250 788 664 840</span>
@@ -113,7 +113,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+250733118522"
-                  className="flex items-start gap-2 text-background/70 hover:text-primary transition-colors text-sm"
+                  className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>+250 733 118 522</span>
@@ -122,14 +122,14 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:manishimwepascal@gmail.com"
-                  className="flex items-start gap-2 text-background/70 hover:text-primary transition-colors text-sm"
+                  className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>manishimwepascal@gmail.com</span>
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2 text-background/70 text-sm">
+                <div className="flex items-start gap-2 text-muted-foreground text-sm">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>Kanamugire, Songa, Erneste<br />Gatsibo-Kiramuruzi, Rwanda</span>
                 </div>
@@ -140,16 +140,16 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-background/10">
+      <div className="border-t border-border">
         <div className="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-background/60 text-sm text-center sm:text-left">
+          <p className="text-muted-foreground text-sm text-center sm:text-left">
             {t('footer.rights')}
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-background/60 hover:text-primary text-sm">
+            <a href="#" className="text-muted-foreground hover:text-primary text-sm">
               Privacy
             </a>
-            <a href="#" className="text-background/60 hover:text-primary text-sm">
+            <a href="#" className="text-muted-foreground hover:text-primary text-sm">
               Terms
             </a>
           </div>

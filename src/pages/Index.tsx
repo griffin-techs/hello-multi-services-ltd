@@ -345,7 +345,7 @@ const Index = () => {
             <CarouselContent className="-ml-4">
               {partners.map((partner) => (
                 <CarouselItem key={partner.name} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                  <div className="px-4 py-6 bg-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center h-24">
+                  <div className="px-4 py-6 bg-card dark:bg-card rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center h-24">
                     <img 
                       src={partner.logo} 
                       alt={partner.name}
