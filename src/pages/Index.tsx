@@ -28,6 +28,8 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { motion } from 'framer-motion';
+import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ScrollAnimation';
 import heroImage from '@/assets/hero-image.jpg';
 
 // Partner logos
@@ -128,28 +130,53 @@ const Index = () => {
         <div className="container-custom relative z-10">
           <div className="max-w-2xl">
             {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 backdrop-blur-sm"
+            >
               <CheckCircle className="w-4 h-4" />
               {t('hero.authorized')}
-            </div>
+            </motion.div>
 
             {/* Main Title */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-background mb-4 leading-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-background mb-4 leading-tight"
+            >
               {t('hero.title')}
-            </h1>
+            </motion.h1>
 
             {/* Subtitle */}
-            <p className="text-2xl sm:text-3xl font-display text-primary font-semibold mb-4">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-2xl sm:text-3xl font-display text-primary font-semibold mb-4"
+            >
               {t('hero.subtitle')}
-            </p>
+            </motion.p>
 
             {/* Description */}
-            <p className="text-lg text-background/80 mb-8 leading-relaxed max-w-xl">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg text-background/80 mb-8 leading-relaxed max-w-xl"
+            >
               {t('hero.description')}
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-4"
+            >
               <a
                 href="https://wa.me/250788664840?text=Hello%20HELLO%20MULTI-SERVICES"
                 target="_blank"
@@ -172,10 +199,15 @@ const Index = () => {
                   {t('hero.cta_call')}
                 </Button>
               </a>
-            </div>
+            </motion.div>
 
             {/* Partner Logos Preview */}
-            <div className="mt-12 pt-8 border-t border-background/20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-12 pt-8 border-t border-background/20"
+            >
               <p className="text-background/60 text-sm mb-3">{t('partners.subtitle')}</p>
               <div className="flex flex-wrap gap-4">
                 {['MTN', 'Irembo', 'RRA', 'Mobicash', 'Spenn'].map((partner) => (
@@ -187,7 +219,7 @@ const Index = () => {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -195,76 +227,76 @@ const Index = () => {
       {/* Services Section */}
       <section className="section-padding bg-muted/30">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <ScrollAnimation className="text-center mb-12">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
               {t('services.title')}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               {t('services.subtitle')}
             </p>
-          </div>
+          </ScrollAnimation>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((service) => (
-              <ServiceCard
-                key={service.href}
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                href={service.href}
-                iconColor={service.iconColor}
-              />
+              <StaggerItem key={service.href}>
+                <ServiceCard
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  href={service.href}
+                  iconColor={service.iconColor}
+                />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <div className="text-center mt-10">
+          <ScrollAnimation delay={0.3} className="text-center mt-10">
             <Link to="/services">
               <Button size="lg" variant="outline" className="gap-2">
                 {t('services.view_all')}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <ScrollAnimation className="text-center mb-12">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
               {t('why.title')}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               {t('why.subtitle')}
             </p>
-          </div>
+          </ScrollAnimation>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {whyChooseUs.map((item, index) => (
-              <div
-                key={index}
-                className="text-center p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-primary" />
+              <StaggerItem key={index}>
+                <div className="text-center p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <item.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="font-display font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-display font-semibold text-foreground mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="section-padding bg-muted/50">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <ScrollAnimation className="text-center mb-12">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
               {language === 'kin' ? 'Ibyo Abakiriya Bacu Bavuga' : 'What Our Clients Say'}
             </h2>
@@ -273,143 +305,146 @@ const Index = () => {
                 ? 'Twishimiye gukorera abakiriya benshi bashimishijwe'
                 : 'We\'re proud to serve many satisfied customers'}
             </p>
-          </div>
+          </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 relative"
-              >
-                {/* Quote Icon */}
-                <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
-                
-                {/* Service Badge */}
-                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-4">
-                  {testimonial.service}
-                </span>
-                
-                {/* Quote */}
-                <p className="text-foreground/80 text-sm leading-relaxed mb-4 italic">
-                  "{testimonial.quote}"
-                </p>
-                
-                {/* Rating */}
-                <div className="flex gap-0.5 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-warm fill-warm" />
-                  ))}
-                </div>
-                
-                {/* Author */}
-                <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-foreground text-sm">
-                    {testimonial.name}
+              <StaggerItem key={index}>
+                <div className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 relative h-full">
+                  {/* Quote Icon */}
+                  <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
+                  
+                  {/* Service Badge */}
+                  <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-4">
+                    {testimonial.service}
+                  </span>
+                  
+                  {/* Quote */}
+                  <p className="text-foreground/80 text-sm leading-relaxed mb-4 italic">
+                    "{testimonial.quote}"
                   </p>
-                  <p className="text-muted-foreground text-xs">
-                    {testimonial.role}
-                  </p>
+                  
+                  {/* Rating */}
+                  <div className="flex gap-0.5 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-warm fill-warm" />
+                    ))}
+                  </div>
+                  
+                  {/* Author */}
+                  <div className="border-t border-border pt-4">
+                    <p className="font-semibold text-foreground text-sm">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Partners Section */}
       <section className="section-padding bg-secondary text-secondary-foreground overflow-hidden">
         <div className="container-custom">
-          <div className="text-center mb-10">
+          <ScrollAnimation className="text-center mb-10">
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
               {t('partners.title')}
             </h2>
             <p className="text-secondary-foreground/80 text-lg max-w-2xl mx-auto">
               {t('partners.subtitle')}
             </p>
-          </div>
+          </ScrollAnimation>
 
-          <Carousel
-            opts={{
-              align: 'start',
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-              }),
-            ]}
-            className="w-full max-w-5xl mx-auto"
-          >
-            <CarouselContent className="-ml-4">
-              {partners.map((partner) => (
-                <CarouselItem key={partner.name} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                  <div className="px-4 py-6 bg-card dark:bg-card rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center h-24">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="h-14 w-auto object-contain"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <ScrollAnimation delay={0.2}>
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+              className="w-full max-w-5xl mx-auto"
+            >
+              <CarouselContent className="-ml-4">
+                {partners.map((partner) => (
+                  <CarouselItem key={partner.name} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                    <div className="px-4 py-6 bg-card dark:bg-card rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center h-24">
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="h-14 w-auto object-contain"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </ScrollAnimation>
         </div>
       </section>
 
       {/* Location & Contact CTA Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="bg-primary rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full translate-y-1/2 -translate-x-1/2" />
-            </div>
-
-            <div className="relative z-10">
-              <MapPin className="w-12 h-12 text-primary-foreground/80 mx-auto mb-4" />
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-primary-foreground mb-4">
-                Gatsibo-Kiramuruzi, Rwanda
-              </h2>
-              <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto">
-                Kanamugire, Songa, Erneste
-              </p>
-
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href="tel:+250788664840">
-                  <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90">
-                    <Phone className="w-5 h-5" />
-                    +250 788 664 840
-                  </Button>
-                </a>
-                <a
-                  href="https://wa.me/250788664840"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
-                    <MessageCircle className="w-5 h-5" />
-                    WhatsApp
-                  </Button>
-                </a>
-                <Link to="/contact">
-                  <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
-                    {t('common.contact_us')}
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </Link>
+          <ScrollAnimation type="scaleIn">
+            <div className="bg-primary rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full translate-y-1/2 -translate-x-1/2" />
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/20 text-primary-foreground/70 text-sm">
-                <p>{t('contact.hours_week')}</p>
-                <p>{t('contact.hours_sat')}</p>
-                <p>{t('contact.hours_sun')}</p>
+              <div className="relative z-10">
+                <MapPin className="w-12 h-12 text-primary-foreground/80 mx-auto mb-4" />
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-primary-foreground mb-4">
+                  Gatsibo-Kiramuruzi, Rwanda
+                </h2>
+                <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto">
+                  Kanamugire, Songa, Erneste
+                </p>
+
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a href="tel:+250788664840">
+                    <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90">
+                      <Phone className="w-5 h-5" />
+                      +250 788 664 840
+                    </Button>
+                  </a>
+                  <a
+                    href="https://wa.me/250788664840"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
+                      <MessageCircle className="w-5 h-5" />
+                      WhatsApp
+                    </Button>
+                  </a>
+                  <Link to="/contact">
+                    <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
+                      {t('common.contact_us')}
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </Link>
+                </div>
+
+                <div className="mt-8 pt-8 border-t border-white/20 text-primary-foreground/70 text-sm">
+                  <p>{t('contact.hours_week')}</p>
+                  <p>{t('contact.hours_sat')}</p>
+                  <p>{t('contact.hours_sun')}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
     </div>
