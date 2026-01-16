@@ -13,6 +13,8 @@ import {
 import { Link } from 'react-router-dom';
 import { useTranslation } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ScrollAnimation';
 
 const Pricing = () => {
   const { t, language } = useTranslation();
@@ -126,7 +128,12 @@ const Pricing = () => {
       {/* Hero Section */}
       <section className="bg-hero-gradient text-white py-16 md:py-24">
         <div className="container-custom">
-          <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl"
+          >
             <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
               {language === 'kin' ? 'Ibiciro Byacu' : 'Our Pricing'}
             </h1>
@@ -135,133 +142,138 @@ const Pricing = () => {
                 ? 'Ibiciro bisobanutse kandi bihendutse ku serivisi zose.'
                 : 'Transparent and affordable pricing for all our services.'}
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Notice */}
-      <section className="py-6 bg-warm/10">
-        <div className="container-custom">
-          <div className="flex items-start gap-3 max-w-3xl">
-            <Info className="w-5 h-5 text-warm mt-0.5 flex-shrink-0" />
-            <p className="text-foreground/80 text-sm">
-              {language === 'kin'
-                ? 'Ibiciro bishobora guhinduka ukurikije serivisi n\'ibisabwa. Twandikire kugira ngo umenye ibiciro nyayo by\'icyo ukeneye.'
-                : 'Prices may vary based on specific requirements. Contact us for exact pricing for your needs.'}
-            </p>
+      <ScrollAnimation>
+        <section className="py-6 bg-warm/10">
+          <div className="container-custom">
+            <div className="flex items-start gap-3 max-w-3xl">
+              <Info className="w-5 h-5 text-warm mt-0.5 flex-shrink-0" />
+              <p className="text-foreground/80 text-sm">
+                {language === 'kin'
+                  ? 'Ibiciro bishobora guhinduka ukurikije serivisi n\'ibisabwa. Twandikire kugira ngo umenye ibiciro nyayo by\'icyo ukeneye.'
+                  : 'Prices may vary based on specific requirements. Contact us for exact pricing for your needs.'}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Pricing Grid */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pricingCategories.map((category, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="p-6 border-b border-border bg-muted/30">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <category.icon className="w-5 h-5 text-primary" />
+              <StaggerItem key={index}>
+                <div className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="p-6 border-b border-border bg-muted/30">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <category.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display font-bold text-foreground">
+                        {category.title}
+                      </h3>
                     </div>
-                    <h3 className="font-display font-bold text-foreground">
-                      {category.title}
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground text-sm">
-                    {category.description}
-                  </p>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    {category.items.map((item, i) => (
-                      <li key={i} className="flex justify-between items-start gap-4">
-                        <span className="text-foreground text-sm">{item.service}</span>
-                        <span className="text-primary font-medium text-sm whitespace-nowrap">
-                          {item.price}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  {category.note && (
-                    <p className="mt-4 pt-4 border-t border-border text-muted-foreground text-xs">
-                      {category.note}
+                    <p className="text-muted-foreground text-sm">
+                      {category.description}
                     </p>
-                  )}
+                  </div>
+                  <div className="p-6">
+                    <ul className="space-y-3">
+                      {category.items.map((item, i) => (
+                        <li key={i} className="flex justify-between items-start gap-4">
+                          <span className="text-foreground text-sm">{item.service}</span>
+                          <span className="text-primary font-medium text-sm whitespace-nowrap">
+                            {item.price}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    {category.note && (
+                      <p className="mt-4 pt-4 border-t border-border text-muted-foreground text-xs">
+                        {category.note}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Payment Methods */}
-      <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <div className="text-center mb-8">
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              {language === 'kin' ? 'Uburyo bwo Kwishyura' : 'Payment Methods'}
-            </h2>
-            <p className="text-muted-foreground">
-              {language === 'kin'
-                ? 'Twakira uburyo butandukanye bwo kwishyura'
-                : 'We accept various payment methods'}
-            </p>
+      <ScrollAnimation>
+        <section className="section-padding bg-muted/30">
+          <div className="container-custom">
+            <div className="text-center mb-8">
+              <h2 className="font-display text-2xl font-bold text-foreground mb-2">
+                {language === 'kin' ? 'Uburyo bwo Kwishyura' : 'Payment Methods'}
+              </h2>
+              <p className="text-muted-foreground">
+                {language === 'kin'
+                  ? 'Twakira uburyo butandukanye bwo kwishyura'
+                  : 'We accept various payment methods'}
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+              {['Cash', 'MTN Mobile Money', 'Mobicash', 'Spenn', 'Bank Transfer'].map((method) => (
+                <span
+                  key={method}
+                  className="px-4 py-2 bg-card border border-border rounded-lg text-foreground font-medium"
+                >
+                  {method}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
-            {['Cash', 'MTN Mobile Money', 'Mobicash', 'Spenn', 'Bank Transfer'].map((method) => (
-              <span
-                key={method}
-                className="px-4 py-2 bg-card border border-border rounded-lg text-foreground font-medium"
-              >
-                {method}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="container-custom text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">
-            {language === 'kin'
-              ? 'Ukeneye ibiciro nyabyo?'
-              : 'Need exact pricing?'}
-          </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
-            {language === 'kin'
-              ? 'Twandikire kuri WhatsApp cyangwa tuhamagare. Tuzaguha ibiciro nyabyo by\'icyo ukeneye.'
-              : 'Contact us via WhatsApp or call us. We\'ll provide exact pricing for your needs.'}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://wa.me/250788664840"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90">
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp
-              </Button>
-            </a>
-            <a href="tel:+250788664840">
-              <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
-                <Phone className="w-5 h-5" />
-                +250 788 664 840
-              </Button>
-            </a>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white/30 text-primary-foreground hover:bg-white/10">
-                {t('common.contact_us')}
-              </Button>
-            </Link>
+      <ScrollAnimation type="scaleIn">
+        <section className="section-padding bg-primary text-primary-foreground">
+          <div className="container-custom text-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">
+              {language === 'kin'
+                ? 'Ukeneye ibiciro nyabyo?'
+                : 'Need exact pricing?'}
+            </h2>
+            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+              {language === 'kin'
+                ? 'Twandikire kuri WhatsApp cyangwa tuhamagare. Tuzaguha ibiciro nyabyo by\'icyo ukeneye.'
+                : 'Contact us via WhatsApp or call us. We\'ll provide exact pricing for your needs.'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="https://wa.me/250788664840"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90">
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp
+                </Button>
+              </a>
+              <a href="tel:+250788664840">
+                <Button size="lg" variant="outline" className="gap-2 border-white/30 text-primary-foreground hover:bg-white/10">
+                  <Phone className="w-5 h-5" />
+                  +250 788 664 840
+                </Button>
+              </a>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="border-white/30 text-primary-foreground hover:bg-white/10">
+                  {t('common.contact_us')}
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
     </div>
   );
 };
