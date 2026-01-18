@@ -116,7 +116,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-28 md:pt-32">
+      <section className="relative min-h-[90vh] flex items-center pt-36 md:pt-40">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img
